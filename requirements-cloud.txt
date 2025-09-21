@@ -1,0 +1,30 @@
+# Core dependencies (cloud-optimized)
+opencv-python-headless>=4.8.0
+numpy>=1.24.0
+pillow>=10.0.0
+matplotlib>=3.7.0
+streamlit>=1.28.0
+
+# PyTorch (CPU version for cloud)
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+
+# Safety Report Generator
+google-generativeai>=0.3.0
+reportlab>=4.0.0
+pandas>=2.0.0
+seaborn>=0.12.0
+openpyxl>=3.1.0
+
+# Dashboard
+plotly>=5.0.0
+
+# Utilities
+email-validator>=2.0.0
+schedule>=1.2.0
+psutil>=5.9.0
+
+# Remove these for cloud (not needed):
+# PyQt5>=5.15.0  # Desktop only
+# keyring>=24.0.0  # Not needed for cloud
