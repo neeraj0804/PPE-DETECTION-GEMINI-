@@ -1,0 +1,30 @@
+# PPE Detection Dataset Configuration
+# Using the downloaded dataset from C:\Users\np080\Downloads\PPE-DETECTION.v26i.yolov11
+
+# Train/val/test sets
+train: C:/Users/np080/Downloads/PPE-DETECTION.v26i.yolov11/train/images
+val: C:/Users/np080/Downloads/PPE-DETECTION.v26i.yolov11/train/images  # Using train as val since no val directory exists
+
+# Labels directory
+labels: C:/Users/np080/Downloads/PPE-DETECTION.v26i.yolov11/train/labels
+
+# Number of classes
+nc: 7
+
+# Class names
+names:
+  0: No helmet
+  1: No vest
+  2: Person
+  3: helmet
+  4: vest
+  5: goggles
+  6: gloves
+
+# Original source
+roboflow:
+  workspace: ai-project-yolo
+  project: ppe-detection-q897z
+  version: 26
+  license: MIT
+  url: https://universe.roboflow.com/ai-project-yolo/ppe-detection-q897z/dataset/26 

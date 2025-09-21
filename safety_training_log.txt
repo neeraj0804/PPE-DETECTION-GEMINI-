@@ -1,0 +1,161 @@
+2025-03-23 18:59:42,473 - INFO - Created experiment directory: runs\train\safety_exp_1742736582
+2025-03-23 18:59:42,557 - INFO - CUDA is available with 1 GPU(s)
+2025-03-23 18:59:42,557 - INFO - Current device: 0 - NVIDIA GeForce GTX 1650
+2025-03-23 18:59:42,558 - INFO - 
+=== Safety Dataset Training Configuration ===
+2025-03-23 18:59:42,558 - INFO - Data: safety_data.yaml
+2025-03-23 18:59:42,559 - INFO - Epochs: 100
+2025-03-23 18:59:42,559 - INFO - Batch size: 16
+2025-03-23 18:59:42,559 - INFO - Image size: 640
+2025-03-23 18:59:42,559 - INFO - Initial weights: yolov8n.pt
+2025-03-23 18:59:42,560 - INFO - Device: 0
+2025-03-23 18:59:42,560 - INFO - Project: runs/train
+2025-03-23 18:59:42,560 - INFO - Experiment name: safety_exp_1742736582
+2025-03-23 18:59:42,560 - INFO - Optimizer: Adam
+2025-03-23 18:59:42,560 - INFO - Initial learning rate: 0.001
+2025-03-23 18:59:42,560 - INFO - Weight decay: 0.0005
+2025-03-23 18:59:42,561 - INFO - Data augmentation: Yes
+2025-03-23 18:59:42,561 - INFO - ==========================================
+
+2025-03-23 18:59:42,561 - INFO - Loading model from yolov8n.pt
+2025-03-23 18:59:42,668 - INFO - Starting training with 100 epochs
+2025-03-23 19:00:22,796 - ERROR - Error during training: not enough values to unpack (expected 3, got 0)
+2025-03-23 19:00:22,825 - ERROR - Traceback (most recent call last):
+  File "C:\Users\np080\OneDrive\Desktop\new\train_safety_model.py", line 173, in main
+    results = model.train(
+              ^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\model.py", line 808, in train
+    self.trainer.train()
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 207, in train
+    self._do_train(world_size)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 322, in _do_train
+    self._setup_train(world_size)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 289, in _setup_train
+    self.test_loader = self.get_dataloader(
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\models\yolo\detect\train.py", line 49, in get_dataloader
+    dataset = self.build_dataset(dataset_path, mode, batch_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\models\yolo\detect\train.py", line 43, in build_dataset
+    return build_yolo_dataset(self.args, img_path, batch, self.data, mode=mode, rect=mode == "val", stride=gs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\build.py", line 99, in build_yolo_dataset
+    return dataset(
+           ^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\dataset.py", line 64, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\base.py", line 74, in __init__
+    self.labels = self.get_labels()
+                  ^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\dataset.py", line 161, in get_labels
+    len_cls, len_boxes, len_segments = (sum(x) for x in zip(*lengths))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+
+2025-04-04 10:53:00,960 - INFO - Created experiment directory: runs\train\safety_exp_1743744180
+2025-04-04 10:53:01,002 - INFO - CUDA is available with 1 GPU(s)
+2025-04-04 10:53:01,003 - INFO - Current device: 0 - NVIDIA GeForce GTX 1650
+2025-04-04 10:53:01,003 - INFO - 
+=== Safety Dataset Training Configuration ===
+2025-04-04 10:53:01,003 - INFO - Data: safety_data.yaml
+2025-04-04 10:53:01,004 - INFO - Epochs: 100
+2025-04-04 10:53:01,004 - INFO - Batch size: 16
+2025-04-04 10:53:01,004 - INFO - Image size: 640
+2025-04-04 10:53:01,004 - INFO - Initial weights: yolov8n.pt
+2025-04-04 10:53:01,004 - INFO - Device: 0
+2025-04-04 10:53:01,005 - INFO - Project: runs/train
+2025-04-04 10:53:01,005 - INFO - Experiment name: safety_exp_1743744180
+2025-04-04 10:53:01,005 - INFO - Optimizer: Adam
+2025-04-04 10:53:01,005 - INFO - Initial learning rate: 0.001
+2025-04-04 10:53:01,005 - INFO - Weight decay: 0.0005
+2025-04-04 10:53:01,006 - INFO - Data augmentation: Yes
+2025-04-04 10:53:01,006 - INFO - ==========================================
+
+2025-04-04 10:53:01,006 - INFO - Loading model from yolov8n.pt
+2025-04-04 10:53:01,120 - INFO - Starting training with 100 epochs
+2025-04-04 10:53:57,927 - ERROR - Error during training: not enough values to unpack (expected 3, got 0)
+2025-04-04 10:53:57,941 - ERROR - Traceback (most recent call last):
+  File "C:\Users\np080\OneDrive\Desktop\new\train_safety_model.py", line 173, in main
+    results = model.train(
+              ^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\model.py", line 808, in train
+    self.trainer.train()
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 207, in train
+    self._do_train(world_size)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 322, in _do_train
+    self._setup_train(world_size)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 289, in _setup_train
+    self.test_loader = self.get_dataloader(
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\models\yolo\detect\train.py", line 49, in get_dataloader
+    dataset = self.build_dataset(dataset_path, mode, batch_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\models\yolo\detect\train.py", line 43, in build_dataset
+    return build_yolo_dataset(self.args, img_path, batch, self.data, mode=mode, rect=mode == "val", stride=gs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\build.py", line 99, in build_yolo_dataset
+    return dataset(
+           ^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\dataset.py", line 64, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\base.py", line 74, in __init__
+    self.labels = self.get_labels()
+                  ^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\dataset.py", line 161, in get_labels
+    len_cls, len_boxes, len_segments = (sum(x) for x in zip(*lengths))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+
+2025-04-21 09:41:56,476 - INFO - Created experiment directory: runs\train\safety_exp_1745208716
+2025-04-21 09:41:56,495 - WARNING - CUDA is not available. Training will use CPU, which may be slow.
+2025-04-21 09:41:56,495 - INFO - 
+=== Safety Dataset Training Configuration ===
+2025-04-21 09:41:56,495 - INFO - Data: safety_data.yaml
+2025-04-21 09:41:56,495 - INFO - Epochs: 100
+2025-04-21 09:41:56,495 - INFO - Batch size: 16
+2025-04-21 09:41:56,496 - INFO - Image size: 640
+2025-04-21 09:41:56,496 - INFO - Initial weights: yolov8n.pt
+2025-04-21 09:41:56,496 - INFO - Device: cpu
+2025-04-21 09:41:56,496 - INFO - Project: runs/train
+2025-04-21 09:41:56,496 - INFO - Experiment name: safety_exp_1745208716
+2025-04-21 09:41:56,497 - INFO - Optimizer: Adam
+2025-04-21 09:41:56,497 - INFO - Initial learning rate: 0.001
+2025-04-21 09:41:56,497 - INFO - Weight decay: 0.0005
+2025-04-21 09:41:56,497 - INFO - Data augmentation: Yes
+2025-04-21 09:41:56,497 - INFO - ==========================================
+
+2025-04-21 09:41:56,497 - INFO - Loading model from yolov8n.pt
+2025-04-21 09:41:56,584 - INFO - Starting training with 100 epochs
+2025-04-21 09:42:06,241 - ERROR - Error during training: not enough values to unpack (expected 3, got 0)
+2025-04-21 09:42:06,241 - ERROR - Traceback (most recent call last):
+  File "c:\Users\np080\OneDrive\Desktop\new\train_safety_model.py", line 173, in main
+    results = model.train(
+              ^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\model.py", line 808, in train
+    self.trainer.train()
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 207, in train
+    self._do_train(world_size)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 322, in _do_train
+    self._setup_train(world_size)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\engine\trainer.py", line 289, in _setup_train
+    self.test_loader = self.get_dataloader(
+                       ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\models\yolo\detect\train.py", line 49, in get_dataloader
+    dataset = self.build_dataset(dataset_path, mode, batch_size)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\models\yolo\detect\train.py", line 43, in build_dataset
+    return build_yolo_dataset(self.args, img_path, batch, self.data, mode=mode, rect=mode == "val", stride=gs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\build.py", line 99, in build_yolo_dataset
+    return dataset(
+           ^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\dataset.py", line 64, in __init__
+    super().__init__(*args, **kwargs)
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\base.py", line 74, in __init__
+    self.labels = self.get_labels()
+                  ^^^^^^^^^^^^^^^^^
+  File "C:\Users\np080\AppData\Local\Programs\Python\Python311\Lib\site-packages\ultralytics\data\dataset.py", line 161, in get_labels
+    len_cls, len_boxes, len_segments = (sum(x) for x in zip(*lengths))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 3, got 0)
+

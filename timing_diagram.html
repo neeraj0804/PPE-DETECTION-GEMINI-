@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8086/8088 Timing Diagrams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .notes {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>8086/8088 Microprocessor Timing Diagrams</h1>
+        
+        <div class="notes">
+            <p>These diagrams show the timing relationships between signals during read and write operations in both maximum and minimum modes of the 8086/8088 microprocessor.</p>
+            <p>Key signals shown include CLK, Address/Status lines, ALE, RD/WR, and data bus activity.</p>
+        </div>
+
+        <h2>Minimum Mode - Read Operation</h2>
+        <canvas id="minRead" width="800" height="400"></canvas>
+        
+        <h2>Minimum Mode - Write Operation</h2>
+        <canvas id="minWrite" width="800" height="400"></canvas>
+        
+        <h2>Maximum Mode - Read Operation</h2>
+        <canvas id="maxRead" width="800" height="400"></canvas>
+        
+        <h2>Maximum Mode - Write Operation</h2>
+        <canvas id="maxWrite" width="800" height="400"></canvas>
+    </div>
+
+    <script>
+        // Helper function to draw timing diagrams
+        function drawSignal(ctx, y, width, pattern, label) {
+            const signalHeight = 30;
+            const labelWidth = 100;
+            
+            // Draw label
+            ctx.fillStyle = '#000';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'right';
+            ctx.fillText(label, labelWidth - 10, y + signalHeight/2 + 4);
+            
+            // Draw signal line
+            ctx.beginPath();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            
+            let x = labelWidth;
+            ctx.moveTo(x, y + pattern[0] * signalHeight);
+            
+            for (let i = 1; i < pattern.length; i++) {
+                if (pattern[i] !== pattern[i-1]) {
+                    ctx.lineTo(x, y + pattern[i] * signalHeight);
+                }
+                x += width / (pattern.length - 1);
+                ctx.lineTo(x, y + pattern[i] * signalHeight);
+            }
+            
+            ctx.stroke();
+        }
+
+        function drawText(ctx, x, y, text) {
+            ctx.fillStyle = '#333';
+            ctx.font = '10px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(text, x, y);
+        }
+
+        function drawCycles(ctx, y, width, count, labelWidth) {
+            const cycleWidth = (width - labelWidth) / count;
+            
+            for (let i = 0; i < count; i++) {
+                const x = labelWidth + i * cycleWidth;
+                ctx.beginPath();
+                ctx.strokeStyle = '#aaa';
+                ctx.lineWidth = 1;
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                
+                drawText(ctx, x + cycleWidth/2, 20, `T${i+1}`);
+            }
+        }
+
+        // Draw the minimum mode read timing diagram
+        function drawMinimumModeRead() {
+            const canvas = document.getElementById('minRead');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const labelWidth = 100;
+            
+            ctx.clearRect(0, 0, width, height);
+            drawCycles(ctx, height, width, 4, labelWidth);
+            
+            let y = 30;
+            
+            // Draw CLK signal (50% duty cycle)
+            drawSignal(ctx, y, width, [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], 'CLK');
+            y += 50;
+            
+            // Draw Address/Status lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A19-A16');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Status');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Status');
+            y += 40;
+            
+            // Draw Address lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A15-A0');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Address');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Address');
+            y += 40;
+            
+            // Draw ALE signal
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'ALE');
+            y += 40;
+            
+            // Draw RD signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1], 'RD');
+            y += 40;
+            
+            // Draw Data Bus
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'D15-D0');
+            drawText(ctx, labelWidth + (width - labelWidth)*2.5/4, y + 15, 'Data In');
+            y += 40;
+            
+            // Draw DT/R signal
+            drawSignal(ctx, y, width, [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0], 'DT/R');
+            y += 40;
+            
+            // Draw DEN signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1], 'DEN');
+        }
+
+        // Draw the minimum mode write timing diagram
+        function drawMinimumModeWrite() {
+            const canvas = document.getElementById('minWrite');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const labelWidth = 100;
+            
+            ctx.clearRect(0, 0, width, height);
+            drawCycles(ctx, height, width, 4, labelWidth);
+            
+            let y = 30;
+            
+            // Draw CLK signal (50% duty cycle)
+            drawSignal(ctx, y, width, [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], 'CLK');
+            y += 50;
+            
+            // Draw Address/Status lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A19-A16');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Status');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Status');
+            y += 40;
+            
+            // Draw Address lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A15-A0');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Address');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Address');
+            y += 40;
+            
+            // Draw ALE signal
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'ALE');
+            y += 40;
+            
+            // Draw WR signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1], 'WR');
+            y += 40;
+            
+            // Draw Data Bus
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'D15-D0');
+            drawText(ctx, labelWidth + (width - labelWidth)*2.5/4, y + 15, 'Data Out');
+            y += 40;
+            
+            // Draw DT/R signal
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], 'DT/R');
+            y += 40;
+            
+            // Draw DEN signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1], 'DEN');
+        }
+
+        // Draw the maximum mode read timing diagram
+        function drawMaximumModeRead() {
+            const canvas = document.getElementById('maxRead');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const labelWidth = 100;
+            
+            ctx.clearRect(0, 0, width, height);
+            drawCycles(ctx, height, width, 4, labelWidth);
+            
+            let y = 30;
+            
+            // Draw CLK signal (50% duty cycle)
+            drawSignal(ctx, y, width, [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], 'CLK');
+            y += 50;
+            
+            // Draw Address/Status lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A19-A16');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Status');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Status');
+            y += 40;
+            
+            // Draw Address lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A15-A0');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Address');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Address');
+            y += 40;
+            
+            // Draw S0, S1, S2 status signals
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], 'S0');
+            y += 30;
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], 'S1');
+            y += 30;
+            drawSignal(ctx, y, width, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'S2');
+            y += 40;
+            
+            // Draw ALE signal (now provided by 8288 bus controller)
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'ALE');
+            y += 40;
+            
+            // Draw MRDC signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1], 'MRDC');
+            y += 40;
+            
+            // Draw Data Bus
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'D15-D0');
+            drawText(ctx, labelWidth + (width - labelWidth)*2.5/4, y + 15, 'Data In');
+            y += 40;
+            
+            // Draw DT/R signal
+            drawSignal(ctx, y, width, [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0], 'DT/R');
+            y += 40;
+            
+            // Draw DEN signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1], 'DEN');
+        }
+
+        // Draw the maximum mode write timing diagram
+        function drawMaximumModeWrite() {
+            const canvas = document.getElementById('maxWrite');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const labelWidth = 100;
+            
+            ctx.clearRect(0, 0, width, height);
+            drawCycles(ctx, height, width, 4, labelWidth);
+            
+            let y = 30;
+            
+            // Draw CLK signal (50% duty cycle)
+            drawSignal(ctx, y, width, [1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0], 'CLK');
+            y += 50;
+            
+            // Draw Address/Status lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A19-A16');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Status');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Status');
+            y += 40;
+            
+            // Draw Address lines
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'A15-A0');
+            drawText(ctx, labelWidth + (width - labelWidth)/4, y + 15, 'Address');
+            drawText(ctx, labelWidth + (width - labelWidth)*3/4, y + 15, 'Address');
+            y += 40;
+            
+            // Draw S0, S1, S2 status signals for write cycle
+            drawSignal(ctx, y, width, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'S0');
+            y += 30;
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], 'S1');
+            y += 30;
+            drawSignal(ctx, y, width, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'S2');
+            y += 40;
+            
+            // Draw ALE signal
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'ALE');
+            y += 40;
+            
+            // Draw MWTC signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1], 'MWTC');
+            y += 40;
+            
+            // Draw Data Bus
+            drawSignal(ctx, y, width, [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5], 'D15-D0');
+            drawText(ctx, labelWidth + (width - labelWidth)*2.5/4, y + 15, 'Data Out');
+            y += 40;
+            
+            // Draw DT/R signal
+            drawSignal(ctx, y, width, [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0], 'DT/R');
+            y += 40;
+            
+            // Draw DEN signal (active low)
+            drawSignal(ctx, y, width, [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1], 'DEN');
+        }
+
+        // Run all drawing functions when the page loads
+        window.onload = function() {
+            drawMinimumModeRead();
+            drawMinimumModeWrite();
+            drawMaximumModeRead();
+            drawMaximumModeWrite();
+        };
+    </script>
+</body>
+</html> 

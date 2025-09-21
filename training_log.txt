@@ -1,0 +1,66 @@
+2025-03-18 12:06:57,299 - INFO - Created experiment directory: runs\train\exp_1742279817
+2025-03-18 12:06:57,431 - INFO - CUDA is available with 1 GPU(s)
+2025-03-18 12:06:57,431 - INFO - Current device: 0 - NVIDIA GeForce GTX 1650
+2025-03-18 12:06:57,432 - INFO - 
+=== Training Configuration ===
+2025-03-18 12:06:57,432 - INFO - Data: data.yaml
+2025-03-18 12:06:57,433 - INFO - Epochs: 1
+2025-03-18 12:06:57,433 - INFO - Batch size: 16
+2025-03-18 12:06:57,433 - INFO - Image size: 640
+2025-03-18 12:06:57,433 - INFO - Initial weights: yolov8n.pt
+2025-03-18 12:06:57,433 - INFO - Device: 0
+2025-03-18 12:06:57,433 - INFO - Project: runs/train
+2025-03-18 12:06:57,433 - INFO - Experiment name: exp_1742279817
+2025-03-18 12:06:57,433 - INFO - Optimizer: SGD
+2025-03-18 12:06:57,433 - INFO - Initial learning rate: 0.01
+2025-03-18 12:06:57,433 - INFO - Weight decay: 0.0005
+2025-03-18 12:06:57,436 - INFO - Data augmentation: No
+2025-03-18 12:06:57,436 - INFO - Overwrite existing: Yes
+2025-03-18 12:06:57,437 - INFO - =============================
+
+2025-03-18 12:07:05,914 - INFO - Loading model from yolov8n.pt
+2025-03-18 12:07:06,217 - INFO - Starting training with 1 epochs
+2025-03-23 10:53:43,870 - INFO - Created experiment directory: runs\train\exp_1742707423
+2025-03-23 10:53:43,957 - INFO - CUDA is available with 1 GPU(s)
+2025-03-23 10:53:43,957 - INFO - Current device: 0 - NVIDIA GeForce GTX 1650
+2025-03-23 10:53:43,958 - INFO - 
+=== Training Configuration ===
+2025-03-23 10:53:43,958 - INFO - Data: data.yaml
+2025-03-23 10:53:43,958 - INFO - Epochs: 100
+2025-03-23 10:53:43,958 - INFO - Batch size: 16
+2025-03-23 10:53:43,958 - INFO - Image size: 640
+2025-03-23 10:53:43,958 - INFO - Initial weights: yolov8n.pt
+2025-03-23 10:53:43,958 - INFO - Device: 0
+2025-03-23 10:53:43,960 - INFO - Project: runs/train
+2025-03-23 10:53:43,960 - INFO - Experiment name: exp_1742707423
+2025-03-23 10:53:43,960 - INFO - Optimizer: SGD
+2025-03-23 10:53:43,960 - INFO - Initial learning rate: 0.01
+2025-03-23 10:53:43,960 - INFO - Weight decay: 0.0005
+2025-03-23 10:53:43,960 - INFO - Data augmentation: No
+2025-03-23 10:53:43,960 - INFO - Overwrite existing: No
+2025-03-23 10:53:43,960 - INFO - =============================
+
+2025-03-23 10:53:58,762 - INFO - Loading model from yolov8n.pt
+2025-03-23 10:53:58,867 - INFO - Starting training with 100 epochs
+2025-04-19 10:36:49,702 - INFO - Created experiment directory: runs\train\exp_1745039209
+2025-04-19 10:36:49,730 - INFO - CUDA is available with 1 GPU(s)
+2025-04-19 10:36:49,731 - INFO - Current device: 0 - NVIDIA GeForce GTX 1650
+2025-04-19 10:36:49,731 - INFO - 
+=== Training Configuration ===
+2025-04-19 10:36:49,731 - INFO - Data: data.yaml
+2025-04-19 10:36:49,731 - INFO - Epochs: 50
+2025-04-19 10:36:49,732 - INFO - Batch size: 4
+2025-04-19 10:36:49,732 - INFO - Image size: 416
+2025-04-19 10:36:49,732 - INFO - Initial weights: yolov8n.pt
+2025-04-19 10:36:49,733 - INFO - Device: 0
+2025-04-19 10:36:49,733 - INFO - Project: runs/train
+2025-04-19 10:36:49,733 - INFO - Experiment name: exp_1745039209
+2025-04-19 10:36:49,733 - INFO - Optimizer: Adam
+2025-04-19 10:36:49,734 - INFO - Initial learning rate: 0.001
+2025-04-19 10:36:49,734 - INFO - Weight decay: 0.0005
+2025-04-19 10:36:49,734 - INFO - Data augmentation: Yes
+2025-04-19 10:36:49,735 - INFO - Overwrite existing: Yes
+2025-04-19 10:36:49,735 - INFO - =============================
+
+2025-04-19 10:37:11,675 - INFO - Loading model from yolov8n.pt
+2025-04-19 10:37:11,792 - INFO - Starting training with 50 epochs

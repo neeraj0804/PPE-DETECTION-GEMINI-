@@ -1,0 +1,20 @@
+opencv-python==4.8.1
+numpy==1.26.0
+# PyTorch with CUDA support - install using the command:
+# pip install torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
+# The lines below will be ignored if installed with the command above
+torch>=2.1.0
+torchvision>=0.16.0
+ultralytics==8.1.0
+pillow==10.0.1
+matplotlib==3.8.0
+streamlit==1.28.0
+PyQt5>=5.15.0
+# Safety Report Generator dependencies
+google-generativeai>=0.3.0
+reportlab>=4.0.0
+pandas>=2.0.0
+seaborn>=0.12.0
+openpyxl>=3.1.0
+# PPE Sight Dashboard dependencies
+plotly>=5.0.0 

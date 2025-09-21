@@ -1,0 +1,19 @@
+# Safety Dataset Configuration
+# Using the downloaded dataset from C:\Users\np080\Downloads\safety.v1i.yolov8
+
+# Train/val/test sets
+train: C:/Users/np080/Downloads/safety.v1i.yolov8/train/images
+val: C:/Users/np080/Downloads/safety.v1i.yolov8/valid/images
+test: C:/Users/np080/Downloads/safety.v1i.yolov8/test/images
+
+# Number of classes
+nc: 3
+
+# Class names
+names:
+  0: Person
+  1: Safety Cone
+  2: Safety Vest
+
+# Path to dataset
+path: C:/Users/np080/Downloads/safety.v1i.yolov8 
